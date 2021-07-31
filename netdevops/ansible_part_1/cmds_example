@@ -1,0 +1,83 @@
+# How to:
+#
+# Reserve the sandbox on developer.cisco
+# Make sure to have the username and password to connect to devices
+# Connect to the Sandbox via VPN
+
+# To run the first example, do:
+# Example DevBox IP: 10.10.20.50
+#         Credentials [developer/C1sco12345]
+
+
+# WE DO NOT NEED TO USE PYTHON 2.7 FOR THIS EXAMPLE.
+# python3 WORKS JUST FINE!!!! HOURRAH
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# --- IGNORE THIS SECTION ---
+# Install the virtual environment using python 2.7
+#   bash$ virtualenv -p /usr/bin/python my-venv2-7
+# Activate the virtual environment:
+#   bash$ source my-venv2-7/bin/activate
+#
+# Inside the host_vars directory I created the file "10.10.20.500.yaml"
+# in order to use ssh username/password but at the end I used the ssk key
+# But I will still commit the file for my own reference
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Create and activate the virtual environment with python3
+# Install the requirements:
+#   bash$ pip install -r requirements
+# Create your ssh key/pair.
+#   bash$ ssh-keygen
+# Then copy it to the jump box:
+# Confirm that you are still connected to the Sandbox VPN
+#   bash$ ssh-copy-id developer@10.10.20.50
+
+
+
+
+# Then try the examples:
+
+
+## Example 0: Not a playbook. Running the module setup directly in the shell
+# ----------
+#   bash$ ansible -m setup servers
+
+# if you want to provide the username/password, make sure to install sshpass first
+# Otherwise, you will get an error using this command:
+#
+#   bash$: ansible -m setup -u developer servers
+
+
+
+## Example 1:
+# ----------
+#   ansible-playbook example1a.yaml
+#
+# NOTE: I got an error with the task: "ip route list"
+# After trying different unsuccessful combinations, always getting an error
+# I replaced the code with netstat.
+# fatal: [10.10.20.50]: FAILED! => {"changed": false, "cmd": "route", \
+# "msg": "[Errno 2] No such file or directory: b'route': b'route'", "rc": 2}
+# So, instead of running example1.yaml, run example1a.yaml
+
+##
+# If you want to specify the username " -u developer" make sur to install sshpass
+# Then, run the command:
+#   ansible-playbook -u developer example1.yaml
+
+
+
+## Example 2:
+# ------------
+#   ansible-playbook example2.yaml
+#
+
+
+
+
+
+
+## Example 3:
+# ----------
+#   ansible-playbook example3.yaml
+#
