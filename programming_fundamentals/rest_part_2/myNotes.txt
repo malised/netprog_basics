@@ -1,0 +1,29 @@
+!!! FEW NOTES and INSTRUCTIONS:
+
+1- Activate the virtual environment since it has already created
+  ! Reminder: to create a virtual environment named my-venv:
+    python3 -m venv my-venv
+
+  ! To activate a virtual environment:
+    source my-venv/bin/activate
+
+
+2- Run the script dnaclogin_and_inventory.py
+  python3 dnaclogin_and_inventory.py
+
+  ! NOTE: in the Always-On, the DNA Center URL is (on March 12, 2022)
+  ! https://sandboxdnac.cisco.com
+  ! no need to specify port 443 in the URL
+
+
+3- I created another version of code based on the developer's
+  learning lab for DNA Center.
+  Run the script:
+    python3 dnac_login.py
+
+
+4- Create network device list with python
+  Run:
+    python dnac_network_device_list.py
+  OR:
+    python3 dnac_network_device_list.py

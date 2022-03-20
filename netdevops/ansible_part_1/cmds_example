@@ -1,6 +1,6 @@
 # How to:
 #
-# Reserve the sandbox on developer.cisco
+# Reserve the sandbox (DevBox sandbox) on developer.cisco
 # Make sure to have the username and password to connect to devices
 # Connect to the Sandbox via VPN
 
@@ -11,6 +11,7 @@
 
 # WE DO NOT NEED TO USE PYTHON 2.7 FOR THIS EXAMPLE.
 # python3 WORKS JUST FINE!!!! HOURRAH
+#
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # --- IGNORE THIS SECTION ---
 # Install the virtual environment using python 2.7
@@ -18,19 +19,31 @@
 # Activate the virtual environment:
 #   bash$ source my-venv2-7/bin/activate
 #
-# Inside the host_vars directory I created the file "10.10.20.500.yaml"
-# in order to use ssh username/password but at the end I used the ssk key
+# Inside the "host_vars" directory I created the file "10.10.20.50.yaml"
+# in order to use ssh username/password but at the end I used the SSH key
 # But I will still commit the file for my own reference
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+#
 # Create and activate the virtual environment with python3
+#   bash$ python3 -m venv venv
+#   bash$ source venv/bin/activate
+#
 # Install the requirements:
 #   bash$ pip install -r requirements
-# Create your ssh key/pair.
+#
+# Create your ssh key/pair using one of these commands:
 #   bash$ ssh-keygen
+#   bash$ ssh-keygen -t rsa
+#
 # Then copy it to the jump box:
 # Confirm that you are still connected to the Sandbox VPN
 #   bash$ ssh-copy-id developer@10.10.20.50
+#   bash$ ssh-copy-id -i [path to rsa file] user@machine
+            ! pour specifier la cle publique a copier:
+            ! Selon ma config, ma cle par defaut est id_ed25519.pub
+            ! et non id_rsa.pub qui est la cle par default standard
+            ! qui se trouve dans /Users/marnie/.ssh/id_ed25519.pub
+            ! Exemple: ssh-copy-id -i ~/.ssh/id_ed25519.pub developer@10.10.20.50
 
 
 
@@ -64,20 +77,24 @@
 # If you want to specify the username " -u developer" make sur to install sshpass
 # Then, run the command:
 #   ansible-playbook -u developer example1.yaml
-
+# ---
 
 
 ## Example 2:
 # ------------
 #   ansible-playbook example2.yaml
 #
-
-
-
-
+# Simply run the command above. No need to be connected in VPN to the Sandbox
+# Although hosts refer to servers inside the playbook, the inventory is not used
+# because the example is only showing how to use variables and loops with Ansible
+# ---
 
 
 ## Example 3:
 # ----------
 #   ansible-playbook example3.yaml
 #
+# Simply run the above command. No need for VPN or Sandbox
+# This third example shows how to declare variables within the playbook
+# and how to use Jinja template
+# ---

@@ -10,7 +10,7 @@
 ##############################################################
 ---
 - name: Retrieve facts from Switches
-  hosts: switches
+  hosts: AlwaysOnSwitches
   gather_facts: False
 
   # Ansible added new connection options for networking devices

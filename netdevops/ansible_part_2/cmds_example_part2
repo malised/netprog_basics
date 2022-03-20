@@ -1,0 +1,62 @@
+# How to:
+#
+# Re-use the python virtual environment of Part_1
+#
+# Change directory and enter in Part_2
+#     cd ../ansible_part_2/
+#
+# Reserve the Sandbox "Open NX-OS with Nexus 9Kv" in Data Center Sandbox category
+# As of February 19th 2022, this sandbox does not exist so I cannot reserve it
+# I will use the Always On Sandbox which include Nexus 9Kv and see
+#   Sandbox name: Open NX-OS Programmability
+#   Nexus FQDN sandbox-nxos-1.cisco.com
+#
+# Using the Always-ON sandbox means that the [switches] group containing
+# the hosts 172.16.30.101 is no longer valid.
+# Therefore, I am adding the Nexus FQDN to a new group [AlwaysOnSwitches].
+# I added:
+# sandbox-nxos-1.cisco.com ansible_python_interpreter="/usr/bin/env python"
+#
+#
+
+# ~~~ Example 1/1a ~~~
+#
+# I recreated example1a.yaml to add my changes
+# Run in the shell :
+#   ansible-playbook example1a.yaml
+#
+# At this run, there was an warning message because I used the switch FQDN
+# instead of using its IP address in inventory
+# Here is the error:
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[WARNING]: Could not match supplied host pattern, ignoring: AlwaysOnSwitches
+
+PLAY [Retrieve facts from Switches] *******************************
+skipping: no hosts matched
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+# Therefore I pinged sandbox-nxos-1.cisco.com which resolved into 131.226.217.151
+# That is the IP address I added in the inventory hosts file
+# Also, I updated host_vars repository
+#
+# Run again. This time it works.
+#   ansible-playbook example1a.yaml
+#
+# NOTE: After running example1a, you have the device configuration so you
+#       can figure out which loopback interfaces to create in example2a and
+#       which subnets are safe to use without conflicting with other people
+#       configuration.
+
+
+
+# ~~~ Example 2/2a ~~~
+#
+# Run in the shell :
+#   ansible-playbook example2a.yaml
+#
+# Here is the recap of the play:
+# PLAY RECAP ************************************************************************************************************************************
+# 131.226.217.151            : ok=2    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+#
+# Optionnally you can re-run example1a to confirm your changes.
+#

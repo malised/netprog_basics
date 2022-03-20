@@ -14,7 +14,7 @@
   # Ansible added new connection options for networking devices
   # to replace connection: local
   # Now connection: network_cli or httpapi are recommended
-  #   Doc: https://docs.ansible.com/ansible/2.9/network/user_guide/platform_nxos.html
+  #   Doc: https://docs.ansible.com/ansible/2.9/network/user_guide/platform_nxos.html 
   connection: network_cli
   gather_facts: false
 
@@ -51,12 +51,12 @@
     - nxos_hsrp
     - nxos_ospf
 
-#- name: Configure Access Switches
-#  hosts: access
-#  connection: network_cli
-#  gather_facts: false
+- name: Configure Access Switches
+  hosts: access
+  connection: network_cli
+  gather_facts: false
 
-#  roles:
-#    - nxos_vlans
-#    - nxos_l3_interfaces
-#    - nxos_po_trunks
+  roles:
+    - nxos_vlans
+    - nxos_l3_interfaces
+    - nxos_po_trunks

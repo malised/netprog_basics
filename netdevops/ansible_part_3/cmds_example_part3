@@ -1,0 +1,37 @@
+# How to:
+#
+# Re-use the python virtual environment of Part_1 and Part_2
+#
+# Change directory and enter in Part_3
+#     cd ../ansible_part_3/
+#
+# if you prefer to create a new virtual environment, simply do:
+#    python3 -m venv venv
+#    source venv/bin/activate
+#    pip install -r requirements.txt
+#
+#
+# Reserve the Sandbox "Cisco Modeling Labs Enterprise" in Networking Sandbox category
+#
+# In CML Sandbox, the topology changed a bit so I have edited the inventory file
+# and the host_vars folder
+#
+#
+# ALL the topology (interfaces, vPC, OSPF, etc) is already configured
+# in this sandbox
+# Running the ansible playbook the way it is, activate the feature mdp on IOS-XE
+# Then, the rest fails
+# I would have to re-think the topology and make my changes in a way to merge
+# with the new CML topology
+#
+#
+# No need to do this anymore:
+#     cd virl_sbx_mgmt/
+#     python virl_simulation_setup.py
+# The network device in the topology are directly accessible by TELNET
+#
+# Run in the shell :
+#   ansible-playbook network_deploy.yaml
+#
+#
+#
